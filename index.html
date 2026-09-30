@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StyleAI - Personalized outfit recommendation system">
+    <title>StyleAI | Outfit Recommendation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a class="logo" href="#" onclick="showPage('home'); return false;">✦ StyleAI</a>
+    <nav>
+        <a href="#" onclick="showPage('home'); return false;">Home</a>
+        <a href="#" onclick="showPage('login'); return false;">Login</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="page active">
+    <div class="hero">
+        <div class="hero-text">
+            <span class="badge">✨ AI PERSONAL STYLIST</span>
+            <h1>Your Style.<br><span>Powered by AI.</span></h1>
+            <p>
+                Upload your photo and get a personalized outfit recommendation
+                using your occasion, outfit type and preferred color.
+            </p>
+            <button class="primary-btn" type="button" onclick="showPage('login')">
+                Get Started →
+            </button>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+            <div class="floating-card card-one">👕 <strong>Outfit AI</strong><small>Personalized Style</small></div>
+            <div class="main-circle">✨</div>
+            <div class="floating-card card-two">🎨 <strong>Smart Match</strong><small>Based on your choices</small></div>
+        </div>
+    </div>
+</section>
+
+<!-- LOGIN -->
+<section id="login" class="page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-icon">✦</div>
+            <h2>Welcome Back</h2>
+            <p>Login to use your personalized StyleAI stylist.</p>
+
+            <form id="loginForm">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <button class="primary-btn full" type="submit">Login →</button>
+            </form>
+
+            <p class="demo-text">Demo login — any valid email/password</p>
+        </div>
+    </div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div>
+                <span class="badge">AI OUTFIT DASHBOARD</span>
+                <h1>Find an outfit<br>made for you.</h1>
+            </div>
+            <button class="logout-btn" type="button" onclick="showPage('home')">Logout</button>
+        </div>
+
+        <div class="service-grid single-service">
+            <div class="service-card outfit" onclick="showPage('outfit')">
+                <div class="service-icon">👕</div>
+                <h2>Outfit AI</h2>
+                <p>
+                    Upload your photo and select your occasion, outfit type
+                    and preferred color. StyleAI will use all three choices
+                    to build a matching outfit recommendation.
+                </p>
+                <span class="arrow">Create My Outfit →</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OUTFIT -->
+<section id="outfit" class="page">
+    <div class="tool-container">
+        <button class="back-btn" type="button" onclick="showPage('dashboard')">← Dashboard</button>
+
+        <div class="tool-header">
+            <span class="badge">👕 OUTFIT AI</span>
+            <h1>Find Your Perfect Outfit</h1>
+            <p>Select every preference. Your final recommendation uses all selected values.</p>
+        </div>
+
+        <form id="outfitForm" class="tool-grid">
+
+            <div class="upload-card">
+                <h3>Your Photo</h3>
+
+                <div class="photo-preview" id="outfitPreview">
+                    <div id="outfitPlaceholder">
+                        📸
+                        <p>Upload your photo</p>
+                    </div>
+                    <img id="outfitImage" alt="Uploaded person photo">
+                </div>
+
+                <input type="file" id="outfitFile" accept="image/png,image/jpeg,image/webp">
+                <label for="outfitFile" class="upload-btn">Choose Photo</label>
+                <p id="fileStatus" class="file-status">No photo selected</p>
+            </div>
+
+            <div class="preference-card">
+                <h3>Choose Your Style</h3>
+
+                <label for="occasion">1. Occasion</label>
+                <select id="occasion" required>
+                    <option value="">Select occasion</option>
+                    <option value="Casual">Casual</option>
+                    <option value="College">College</option>
+                    <option value="Office">Office</option>
+                    <option value="Party">Party</option>
+                    <option value="Wedding">Wedding</option>
+                    <option value="Date">Date</option>
+                </select>
+
+                <label>2. Outfit Type</label>
+                <div class="option-grid" id="outfitTypes" role="group" aria-label="Outfit type">
+                    <button type="button" class="choice-btn" data-value="T-Shirt">👕 T-Shirt</button>
+                    <button type="button" class="choice-btn" data-value="Shirt">👔 Shirt</button>
+                    <button type="button" class="choice-btn" data-value="Jacket">🧥 Jacket</button>
+                    <button type="button" class="choice-btn" data-value="Jeans">👖 Jeans</button>
+                    <button type="button" class="choice-btn" data-value="Traditional">👗 Traditional</button>
+                    <button type="button" class="choice-btn" data-value="Formal">🕴️ Formal</button>
+                </div>
+                <input type="hidden" id="outfitType" value="">
+
+                <label for="outfitColor">3. Preferred Color</label>
+                <select id="outfitColor" required>
+                    <option value="">Select color</option>
+                    <option value="Any Color">Any Color</option>
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Green">Green</option>
+                    <option value="Red">Red</option>
+                    <option value="Beige">Beige</option>
+                </select>
+
+                <div id="selectionSummary" class="selection-summary">
+                    <strong>Your selections</strong>
+                    <span>Choose occasion, outfit type and color.</span>
+                </div>
+
+                <button class="primary-btn full" id="recommendBtn" type="submit">
+                    ✨ Find My Outfit
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- RESULT -->
+<section id="outfitResult" class="page">
+    <div class="result-container">
+        <button class="back-btn" type="button" onclick="showPage('outfit')">← Change Outfit</button>
+
+        <span class="badge">✨ YOUR PERSONALIZED LOOK</span>
+        <h1>Here's What We'd Recommend</h1>
+
+        <div class="result-grid">
+            <div class="your-photo">
+                <h3>Your Photo</h3>
+                <img id="resultPerson" alt="Your uploaded photo">
+            </div>
+
+            <div class="recommendation-card">
+                <div class="recommendation-icon">👕</div>
+                <span class="result-label">RECOMMENDED OUTFIT</span>
+                <h2 id="resultOutfit">Your personalized look</h2>
+                <p id="resultDescription"></p>
+
+                <div class="recommendation-details">
+                    <div><span>Occasion</span><strong id="resultOccasion">—</strong></div>
+                    <div><span>Outfit type</span><strong id="resultType">—</strong></div>
+                    <div><span>Color</span><strong id="resultColor">—</strong></div>
+                </div>
+
+                <div class="match" id="resultMatch">✨ Matched using all your selections</div>
+                <p class="recommendation-note" id="resultNote"></p>
+
+                <button class="primary-btn" type="button" onclick="showPage('outfit')">
+                    Try Another Look
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 StyleAI — AI Personalized Outfit Recommendation System</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
